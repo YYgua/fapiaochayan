@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
     <title>电子票查验</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <script src="jquery.min.js.下载"></script>
-	</head><body ontouchstart="">
-		
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <script src="/static/js/jquery.min.js?v=2.1.4"></script>
+	<body ontouchstart>
+		<meta charset="utf8">
 	    <style>
 	    	html{
 				touch-action:none;
@@ -113,7 +115,7 @@
 	          left: 13px;
 	          width: 14px;
 	          height: 12px;
-	          background: url(icon_light.f13cff3.png) 0 -26px;
+	          background: url(/static/img/icon_light.f13cff3.png) 0 -26px;
 	          background-size: 34px 471px;
 	        }
 	         
@@ -124,7 +126,7 @@
 	          width: 34px;
 	          height: 34px;
 	          cursor: pointer;
-	          background: url(icon_light.f13cff3.png) 0 -437px;
+	          background: url(/static/img/icon_light.f13cff3.png) 0 -437px;
 	          background-size: 34px 471px;
 	        }
 	    </style>
@@ -139,15 +141,15 @@
 	    PI = Math.PI
 	  const L = l + r * 2 + 3 // 滑块实际边长
 	 const imgAarr = [
-		 "h5_check_img_1.jpg",
-		 "h5_check_img_2.jpg",
-		 "h5_check_img_3.jpg",
-		 "h5_check_img_4.jpg",
-		 "h5_check_img_5.jpg",
-		 "h5_check_img_6.jpg",
-		 "h5_check_img_7.jpg",
-		 "h5_check_img_8.jpg",
-		 "h5_check_img_9.jpg"
+		 "/static/img/h5-check-image/h5_check_img_1.jpg",
+		 "/static/img/h5-check-image/h5_check_img_2.jpg",
+		 "/static/img/h5-check-image/h5_check_img_3.jpg",
+		 "/static/img/h5-check-image/h5_check_img_4.jpg",
+		 "/static/img/h5-check-image/h5_check_img_5.jpg",
+		 "/static/img/h5-check-image/h5_check_img_6.jpg",
+		 "/static/img/h5-check-image/h5_check_img_7.jpg",
+		 "/static/img/h5-check-image/h5_check_img_8.jpg",
+		 "/static/img/h5-check-image/h5_check_img_9.jpg"
 	 ]
 	  function getRandomNumberByRange (start, end) {
 	    return Math.round(Math.random() * (end - start) + start)
@@ -457,18 +459,18 @@
 	}(window))
 	 
 	    </script>
-	
-		<img alt="头部图片" src="top_bg.png" style="width: 100%;"><br>
-		<p id="topTitle" style="color: red;">请控制拼图块对齐缺口</p>
-	    <div id="captcha" style="position: relative;">
-	    <canvas class="undefined" width="1027" height="300"></canvas><div class="refreshIcon"></div><canvas class="block" width="63" height="300" style="left: 0px;"></canvas><div class="sliderContainer"><div class="sliderMask" style="width: 0px;"><div class="slider" style="left: 0px;"><span class="sliderIcon"></span></div></div><span class="sliderText">向右滑动填充拼图</span></div></div>
+	</head>
+		<img alt="头部图片" src="/static/img/top_bg.png" style="width: 100%;"><br>
+		<p id="topTitle">拖动下方滑块完成拼图</p>
+	    <div id="captcha">
+	    </div>
 	    <form id="Form" action="EInvoiceCheckH5" method="post">
 	   		<input type="hidden" name="contentType" value="application/x-zip-compressed">
 	        <input type="hidden" id="type" name="type" value="1">
-		    <input type="hidden" id="payer" name="payer" value="文丛慧">
+		    <input type="hidden" id="payer" name="payer" value="张培培">
 		    <input type="hidden" id="ivccode" name="ivccode" value="41060221">
-		    <input type="hidden" id="ivcno" name="ivcno" value="4701854926">
-		    <input type="hidden" id="ckno" name="ckno" value="xbaH99">
+		    <input type="hidden" id="ivcno" name="ivcno" value="6020622965">
+		    <input type="hidden" id="ckno" name="ckno" value="6138c3">
 		    <input type="hidden" id="lsh" name="lsh" value="">
 		    <input type="hidden" id="year" name="year" value="">
 		    <input type="hidden" id="regicode" name="regicode" value="">
@@ -478,5 +480,5 @@
 	    el: document.getElementById('captcha'),
 	  })
 	</script>
-
-</body></html>
+</body>
+</html>
