@@ -1,72 +1,70 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<html><head><meta http-equiv=“Content-Type” content=“text/html; charset=UTF-8"> 
     <title>电子票查验</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <meta http-equiv="Cache-Control" content="no-cache"/>
-    <script src="/static/js/jquery.min.js?v=2.1.4"></script>
-	<body ontouchstart>
-		<meta charset="utf8">
-	    <style>
-	    	html{
-				touch-action:none;
-				touch-action:pan-y;
+    <元名称=“视口”内容=“宽度=设备宽度，初始缩放=1，用户可缩放=0">
+    <meta http-equiv=“Cache-Control” content=“no-cache">
+    <script src=“jquery.min.js.下载”></script>
+	</头><体 ="">
+		
+	    <风格>
+	    	断续器{
+				触摸动作：无;
+				触摸动作：泛-y;
 			}
-	        .block {
-	          position: absolute;
-	          left: 0;
-	          top: 0;
+.块 {
+	          位置：绝对;
+	          左： 0;
+	          顶部： 0;
 	        }
 	         
-	        .sliderContainer {
-	          position: relative;
-	          text-align: center;
-	          width: 100%;
-	          height: 40px;
-	          line-height: 40px;
-	          margin-top: 15px;
-	          background: #f7f9fa;
-	          color: #45494c;
-	          border: 1px solid #e4e7eb;
+.滑块容器 {
+	          位置：相对;
+	          文本对齐：居中;
+	          宽度： 100%;
+	          最大高度： 40像素;
+	          行高：40像素;
+	          上边距：15像素;
+	          背景： #f7f9fa;
+	          颜色 ： #45494c;
+	          边框： 1px 实心 #e4e7eb;
 	        }
 	         
-	        .sliderContainer_active .slider {
-	          height: 38px;
-	          top: -1px;
-	          border: 1px solid #1991FA;
+.sliderContainer_active .滑 块 {
+	          最大高度： 38像素;
+	          顶部： -1像素;
+	          边框： 1px 实心 #1991FA;
 	        }
 	         
-	        .sliderContainer_active .sliderMask {
-	          height: 38px;
-	          border-width: 1px;
+.sliderContainer_active .滑块掩码 {
+	          最大高度： 38像素;
+	          边框宽度： 1px;
 	        }
 	         
-	        .sliderContainer_success .slider {
-	          height: 38px;
-	          top: -1px;
-	          border: 1px solid #52CCBA;
-	          background-color: #52CCBA !important;
+.sliderContainer_success .滑 块 {
+	          最大高度： 38像素;
+	          顶部： -1像素;
+	          边框： 1像素实心 #52CCBA;
+	          背景颜色： #52CCBA ！重要;
 	        }
 	         
-	        .sliderContainer_success .sliderMask {
-	          height: 38px;
-	          border: 1px solid #52CCBA;
-	          background-color: #D2F4EF;
+.sliderContainer_success .滑块掩码 {
+	          最大高度： 38像素;
+	          边框： 1像素实心 #52CCBA;
+	          背景颜色： #D2F4EF;
 	        }
 	         
-	        .sliderContainer_success .sliderIcon {
-	          background-position: 0 0 !important;
+.sliderContainer_success .滑块图标 {
+	          背景位置： 0 0 ！重要;
 	        }
 	         
-	        .sliderContainer_fail .slider {
-	          height: 38px;
-	          top: -1px;
-	          border: 1px solid #f57a7a;
-	          background-color: #f57a7a !important;
+.sliderContainer_fail .滑 块 {
+	          最大高度： 38像素;
+	          顶部： -1像素;
+	          边框： 1px 实心 #f57a7a;
+	          背景颜色： #f57a7a ！重要;
 	        }
 	         
-	        .sliderContainer_fail .sliderMask {
+.sliderContainer_fail .滑块掩码 {
 	          height: 38px;
 	          border: 1px solid #f57a7a;
 	          background-color: #fce1e1;
@@ -115,7 +113,7 @@
 	          left: 13px;
 	          width: 14px;
 	          height: 12px;
-	          background: url(/static/img/icon_light.f13cff3.png) 0 -26px;
+	          background: url(icon_light.f13cff3.png) 0 -26px;
 	          background-size: 34px 471px;
 	        }
 	         
@@ -126,96 +124,96 @@
 	          width: 34px;
 	          height: 34px;
 	          cursor: pointer;
-	          background: url(/static/img/icon_light.f13cff3.png) 0 -437px;
+	          background: url(icon_light.f13cff3.png) 0 -437px;
 	          background-size: 34px 471px;
 	        }
-	    </style>
-	    <script>
-	       //加载（事件会在页面加载完成后触发）
-	       (function (window) {
-	        var width = document.body.clientWidth;
-	  const l = 42, // 滑块边长
-	    r = 9, // 滑块半径
-	    w = width, // canvas宽度
-	    h = 300, // canvas高度
-	    PI = Math.PI
+	    </风格>
+	    <脚本>
+	       加载（事件会在页面加载完成后触发）
+	       (函数（窗口) {
+	        var 宽度 = 文档。正文。客户端宽度;
+	  const l = 42， // 滑块边长
+	    r = 9， // 滑块半径
+	    w = 宽度， // 画布宽度
+	    h = 300， // 画布高度
+	    PI = 数学。圆周率
 	  const L = l + r * 2 + 3 // 滑块实际边长
 	 const imgAarr = [
-		 "/static/img/h5-check-image/h5_check_img_1.jpg",
-		 "/static/img/h5-check-image/h5_check_img_2.jpg",
-		 "/static/img/h5-check-image/h5_check_img_3.jpg",
-		 "/static/img/h5-check-image/h5_check_img_4.jpg",
-		 "/static/img/h5-check-image/h5_check_img_5.jpg",
-		 "/static/img/h5-check-image/h5_check_img_6.jpg",
-		 "/static/img/h5-check-image/h5_check_img_7.jpg",
-		 "/static/img/h5-check-image/h5_check_img_8.jpg",
-		 "/static/img/h5-check-image/h5_check_img_9.jpg"
+		 “h5_check_img_1.jpg”，
+		 “h5_check_img_2.jpg”，
+		 “h5_check_img_3.jpg”，
+		 “h5_check_img_4.jpg”，
+		 “h5_check_img_5.jpg”，
+		 “h5_check_img_6.jpg”，
+		 “h5_check_img_7.jpg”，
+		 “h5_check_img_8.jpg”，
+		 “h5_check_img_9.jpg”
 	 ]
-	  function getRandomNumberByRange (start, end) {
-	    return Math.round(Math.random() * (end - start) + start)
+	  函数 getRandomNumberByRange （start， end) {
+	    返回数学。圆（数学。random（） * （结束 - 开始） + 开始)
 	  }
 	 
-	  function createCanvas (width, height) {
-	    const canvas = createElement('canvas')
-	    canvas.width = width
-	    canvas.height = height
-	    return canvas
+	  函数创建Canvas（宽度，高度) {
+	    const canvas = createElement（'canvas')
+	    画布。宽度 = 宽度
+	    画布。高度 = 高度
+	    返回画布
 	  }
 	 
-	  function createImg (onload) {
-	    const img = createElement('img')
-	    img.crossOrigin = "Anonymous"
-	    img.onload = onload
-	    img.onerror = () => {
-	      img.src = getRandomImg()
+	  函数 createImg （onload) {
+	    const img = createElement（'img')
+	    断续器crossOrigin = “Anonymous”
+	    断续器onload = onload
+	    断续器onerror = () => {
+	      断续器src = getRandomImg()
 	    }
-	    img.src = getRandomImg()
-	    return img
+	    断续器src = getRandomImg()
+	    返回 img
 	  }
 	 
-	  function createElement (tagName, className) {
-	    const elment = document.createElement(tagName)
-	    elment.className = className
-	    return elment
+	  函数 createElement （tagName， className) {
+	    const elment = document.createElement（tagName)
+	    埃尔门特。类名 = 类名
+	    返回 elment
 	  }
 	 
-	  function addClass (tag, className) {
-	    tag.classList.add(className)
+	  函数 addClass （tag， className) {
+	    标记中。类列表。添加（类名)
 	  }
 	 
-	  function removeClass (tag, className) {
-	    tag.classList.remove(className)
+	  函数 removeClass（标记、类名) {
+	    标记中。类列表。删除（类名)
 	  }
 	 
-	  function getRandomImg () {
-		  let i = getRandomNumberByRange(0, imgAarr.length);
-	      return imgAarr[i]
+	  函数 getRandomImg () {
+		  let i = getRandomNumberByRange（0， imgAarr.长度);
+	      返回 imgAarr[i]
 	  }
 	 
-	  function draw (ctx, x, y, operation) {
-	    ctx.beginPath()
-	    ctx.moveTo(x, y)
-	    ctx.arc(x + l / 2, y - r + 2, r, 0.72 * PI, 2.26 * PI)
-	    ctx.lineTo(x + l, y)
-	    ctx.arc(x + l + r - 2, y + l / 2, r, 1.21 * PI, 2.78 * PI)
-	    ctx.lineTo(x + l, y + l)
-	    ctx.lineTo(x, y + l)
-	    ctx.arc(x + r - 2, y + l / 2, r + 0.4, 2.76 * PI, 1.24 * PI, true)
-	    ctx.lineTo(x, y)
-	    ctx.lineWidth = 2
-	    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-	    ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)'
-	    ctx.stroke()
-	    ctx[operation]()
-	    ctx.globalCompositeOperation = 'overlay'
+	  函数绘制（ctx、x、y、操作) {
+	    腾讯网.开始路径()
+	    腾讯网.移动到（x， y)
+	    腾讯网.弧（x + l / 2， y - r + 2， r， 0.72 * PI， 2.26 * PI)
+	    腾讯网.lineTo（x + l， y)
+	    腾讯网.弧（x + l + r - 2， y + l / 2， r， 1.21 * PI， 2.78 * PI)
+	    腾讯网.lineTo（x + l， y + l)
+	    腾讯网.lineTo（x， y + l)
+	    腾讯网.弧（x + r - 2， y + l / 2， r + 0.4， 2.76 * PI， 1.24 * PI， 真)
+	    腾讯网.lineTo（x， y)
+	    腾讯网.线宽 = 2
+	    腾讯网.fillStyle = 'rgba（255， 255， 255， 0.7）'
+	    腾讯网.strokeStyle = 'rgba（255， 255， 255， 0.7）'
+	    腾讯网.中风()
+	    ctx[操作]()
+	    腾讯网.全局复合操作 = “覆盖”
 	  }
 	 
-	  function sum (x, y) {
-	    return x + y
+	  函数总和 （x， y) {
+	    返回 x + y
 	  }
 	 
-	  function square (x) {
-	    return x * x
+	  函数方块 （x) {
+	    返回 x * x
 	  }
 	 
 	  class jigsaw {
@@ -452,33 +450,33 @@
 	  }
 	 
 	  window.jigsaw = {
-	    init: function (opts) {
-	      return new jigsaw(opts).init()
+	    初始化：函数（选择) {
+	      返回新的拼图（选择）。初始化()
 	    }
 	  }
-	}(window))
+	}(窗))
 	 
-	    </script>
-	</head>
-		<img alt="头部图片" src="/static/img/top_bg.png" style="width: 100%;"><br>
-		<p id="topTitle">拖动下方滑块完成拼图</p>
-	    <div id="captcha">
-	    </div>
-	    <form id="Form" action="EInvoiceCheckH5" method="post">
-	   		<input type="hidden" name="contentType" value="application/x-zip-compressed">
-	        <input type="hidden" id="type" name="type" value="1">
-		    <input type="hidden" id="payer" name="payer" value="张培培">
-		    <input type="hidden" id="ivccode" name="ivccode" value="41060221">
-		    <input type="hidden" id="ivcno" name="ivcno" value="6020622965">
-		    <input type="hidden" id="ckno" name="ckno" value="6138c3">
-		    <input type="hidden" id="lsh" name="lsh" value="">
-		    <input type="hidden" id="year" name="year" value="">
-		    <input type="hidden" id="regicode" name="regicode" value="">
-	    </form>
-	<script type="text/javascript">
-	  jigsaw.init({
-	    el: document.getElementById('captcha'),
+	    </脚本>
+	
+		<img alt=“头部图片” src=“top_bg.png” style=“width： 100%;”><br>
+		<p id=“topTitle” style=“color： red;”>请控制拼图块对齐缺口</p>
+	    <div id=“captcha” style=“position： relative;">
+	    <canvas class=“undefined” width=“1027” height=“300”></canvas><div class=“refreshIcon”></div><canvas class=“block” width=“63”高度=“300” 样式=“左： 0px;”></canvas><div class=“sliderContainer”><div class=“sliderMask” style=“width： 0px;”><div 类=“滑块”样式=“左：0px;”><span class=“sliderIcon”></span></div></div><span class=“sliderText”>向右滑动填充拼图</span></div></div>
+	    <表单 id=“表单” 操作=“EInvoiceCheckH5” 方法=“发布">
+	   		<输入类型=“隐藏”名称=“contentType” 值=“application/x-zip-compressed">
+	        <输入类型=“隐藏” id=“类型” 名称=“类型” 值=“1">
+		    <input type=“hidden” id=“payer” name=“payer” value=“文丛慧">
+		    <input type=“hidden” id=“ivccode” name=“ivccode” value=“41060221">
+		    <input type=“hidden” id=“ivcno” name=“ivcno” value=“4701854926">
+		    <input type=“hidden” id=“ckno” name=“ckno” value=“xbaH99">
+		    <输入类型=“隐藏” id=“lsh” name=“lsh” 值="">
+		    <输入类型=“隐藏” id=“年份” 名称=“年份”值="">
+		    <输入类型=“隐藏” id=“regicode” name=“regicode” 值="">
+	    </形式>
+	<script type=“text/javascript">
+	  拼图。初始化({
+	    el：文档。getElementById（'captcha'），
 	  })
-	</script>
-</body>
-</html>
+	</脚本>
+
+</正文></html>
